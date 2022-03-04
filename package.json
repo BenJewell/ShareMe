@@ -1,0 +1,23 @@
+{
+  "name": "shareme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenJewell/ShareMe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BenJewell/ShareMe/issues"
+  },
+  "homepage": "https://github.com/BenJewell/ShareMe#readme",
+  "dependencies": {
+    "express": "~4.16.1",
+    "nodemon": "^2.0.15"
+  }
+}
