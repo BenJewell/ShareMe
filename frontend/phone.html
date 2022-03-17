@@ -13,29 +13,25 @@
 	<!-- <script type="text/javascript" src="libs/jquery-qrcode-master/src/jquery.qrcode.js"></script>
 <script type="text/javascript" src="libs/jquery-qrcode-master/src/qrcode.js"></script> -->
 
-	<h1>Loading...</h1>
-	<noscript>Javascript is disabled or not working.</noscript>
+	<p>Render in table</p>
+
+	<form>
+		<input type="text" id="url">
+		<br>
+		<button>Scan With Camera</button>
+		<button>Enter Code Manually</button>
+	</form>
 
 	<script>
-		// Device Detection
-		isMobile = function () {
-			if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ||
-				(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform))) {
-				return true
-			}
-			return false
-		}
 
-		if (isMobile() == true) {
-			window.location = "phone.html"
-		}
-		else {
-			window.location = "pc.html"
-		}
-		console.log(isMobile())
+	// jQuery('#qrcodeTable').qrcode({
+	// 	render	: "table",
+	// 	text	: "http://jetienne.com"
+	// });
+	// jQuery('#qrcodeCanvas').qrcode({
+	// 	text	: "http://jetienne.com"
+	// });	
 	</script>
-
-
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 	<script type="text/javascript" src="libs/jquery-qrcode-master/jquery.qrcode.min.js"></script>
