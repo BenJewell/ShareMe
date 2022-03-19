@@ -2,8 +2,21 @@ const express = require('express');
 const path = require("path");
 const app = express();
 const http = require('http');
-const server = http.createServer(app);
+const https = require('https');
+const fs = require('fs');
 const { Server } = require("socket.io");
+
+
+var https_options = {
+  key: fs.readFileSync("ssl/privkey.pem"),
+  cert: fs.readFileSync("ssl/fullchain.pem"),
+  ca: [
+    //fs.readFileSync('ssl/chain.pem'),
+    //fs.readFileSync('ssl/fullchain.pem')
+  ]
+}
+
+const server = https.createServer(https_options, app);
 const io = new Server(server);
 
 // app.use(express.urlencoded({extended: false}));

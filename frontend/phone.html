@@ -3,6 +3,7 @@
 
 <head>
 	<title>basic example</title>
+	<script src="libs/qrcode-scanner/html5-qrcode.min.js"></script>
 </head>
 
 <body>
@@ -18,20 +19,22 @@
 	<form>
 		<input type="text" id="url">
 		<br>
-		<button>Scan With Camera</button>
+		<button id="start-camera">Scan With Camera</button>
 		<button>Enter Code Manually</button>
 	</form>
 
-	<script>
+	<div id="qr-reader" style="width: 600px"></div>
 
-	// jQuery('#qrcodeTable').qrcode({
-	// 	render	: "table",
-	// 	text	: "http://jetienne.com"
-	// });
-	// jQuery('#qrcodeCanvas').qrcode({
-	// 	text	: "http://jetienne.com"
-	// });	
+	<script>
+		function onScanSuccess(decodedText, decodedResult) {
+			console.log(`Code scanned = ${decodedText}`, decodedResult);
+		}
+		var html5QrcodeScanner = new Html5QrcodeScanner(
+			"qr-reader", { fps: 10, qrbox: 250 });
+		html5QrcodeScanner.render(onScanSuccess);
 	</script>
+
+
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 	<script type="text/javascript" src="libs/jquery-qrcode-master/jquery.qrcode.min.js"></script>
