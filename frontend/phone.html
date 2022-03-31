@@ -14,27 +14,6 @@
 	<!-- <script type="text/javascript" src="libs/jquery-qrcode-master/src/jquery.qrcode.js"></script>
 <script type="text/javascript" src="libs/jquery-qrcode-master/src/qrcode.js"></script> -->
 
-	<p>Render in table</p>
-
-	<form>
-		<input type="text" id="url">
-		<br>
-		<button id="start-camera">Scan With Camera</button>
-		<button>Enter Code Manually</button>
-	</form>
-
-	<div id="qr-reader" style="width: 600px"></div>
-
-	<script>
-		function onScanSuccess(decodedText, decodedResult) {
-			console.log(`Code scanned = ${decodedText}`, decodedResult);
-		}
-		var html5QrcodeScanner = new Html5QrcodeScanner(
-			"qr-reader", { fps: 10, qrbox: 250 });
-		html5QrcodeScanner.render(onScanSuccess);
-	</script>
-
-
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 	<script type="text/javascript" src="libs/jquery-qrcode-master/jquery.qrcode.min.js"></script>
@@ -43,6 +22,19 @@
 		crossorigin="anonymous"></script>
 	<link href="styles.css" rel="stylesheet">
 	<script src="scripts.js" type="text/javascript"></script>
+
+
+	<p>text</p>
+	<script>initiate("phone")</script>
+
+	<form>
+		<input type="text" id="url">
+		<br>
+		<button id="start-camera" onclick="camera">Scan With Camera</button>
+		<button id="manual-code" onclick="manual">Enter Code Manually</button>
+	</form>
+
+	<div id="qr-reader" style="width: 600px"></div>
 
 </body>
 
