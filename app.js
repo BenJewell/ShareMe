@@ -27,19 +27,33 @@ app.use(express.static(path.join(__dirname, 'frontend')));
 //   res.sendFile(__dirname + '/frontend/*');
 // });
 
+const sockets = new Map();
+
 function generateID() {
     return Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
 }
 
 io.on('connection', (socket) => {
     console.log('a user connected');
+    var ID = generateID()
 
     socket.on('requestID', () => {
-        socket.emit('ID', generateID())
+        socket.emit('ID', ID)
+        sockets.set(ID, socket)
+        console.log("added", ID, "to the map")
+      });
+
+      socket.on('giveDestination', (ID, URL) => {
+        ID = parseInt(ID, 10)
+        console.log(`Got a URL of ${URL} for ID ${ID}`)
+        console.log(sockets.get(ID), typeof(ID))
+        // Next time: if undefined, we need to throw an error the the phone saying the client ID is wrong. Otherwise continue with the URL pass.
+        //sockets.get(ID).emit('URL', URL)
       });
 
     socket.on('disconnect', () => {
       console.log('user disconnected');
+      sockets.delete(ID)
     });
   });
 
