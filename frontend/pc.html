@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
+    <link href="/css/style.css" rel="stylesheet" as="style">
 
 <head>
-    <title>basic example</title>
+    <title>QR code generator</title>
 </head>
 
 <body>
-
+<div class="wrapper">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script type="text/javascript" src="libs/jquery-qrcode-master/jquery.qrcode.min.js"></script>
     <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
@@ -15,12 +16,12 @@
     <link href="styles.css" rel="stylesheet">
     <script src="scripts.js" type="text/javascript"></script>
 
-    <p>text</p>
+    <p>Scan QR-Code with Phone</p>
     <script>initiate("pc")</script>
     <div id="qrcode"></div>
 
 
-
+</div>
 </body>
 
 </html>

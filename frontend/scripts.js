@@ -47,3 +47,5 @@ function setupPage(mode) {
 function sendData(ID, URL) {
     socket.emit("giveDestination", ID, URL)
 }
+
+// qrcode
