@@ -3,7 +3,8 @@
 
 <head>
 	<title>basic example</title>
-	<script src="libs/qrcode-scanner/html5-qrcode.min.js"></script>
+	<!-- <script src="libs/qrcode-scanner/html5-qrcode.min.js"></script> -->
+	<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 </head>
 
 <body>
@@ -29,14 +30,13 @@
 	<br>
 	<button id="start-camera" onclick="setupPage('camera')">Scan With Camera</button>
 	<button id="manual-code" onclick="setupPage('manual')">Enter Code Manually</button>
-	<!-- <button>Enter Code Manually</button> -->
-
-	<div id="qr-reader" style="width: 600px ; display: none"></div>
 
 	<div id="code-box" style="display: none">
 		<input type="text" id="ID">
 		<input type="submit" id="submit" onclick="sendData(document.getElementById('ID').value, document.getElementById('url').value)">
 	</div>
+
+	<div id="qr-reader" style="width: 600px ; visibility: hidden"></div>
 
 	<script src="scripts.js" type="text/javascript"></script>
 	<script>initiate("phone")</script>
