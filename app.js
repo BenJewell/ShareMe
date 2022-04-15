@@ -46,7 +46,7 @@ io.on('connection', (socket) => {
       socket.on('giveDestination', (ID, URL) => {
         ID = parseInt(ID, 10)
         console.log(`Got a URL of ${URL} for ID ${ID}`)
-        console.log(sockets.get(ID), typeof(ID))
+        //console.log(sockets.get(ID), typeof(ID))
         // Next time: if undefined, we need to throw an error the the phone saying the client ID is wrong. Otherwise continue with the URL pass.
         //sockets.get(ID).emit('URL', URL)
       });

@@ -12,12 +12,20 @@ function initiate(type) {
     if (type === "phone") {
         // QR scanner
         function onScanSuccess(decodedText, decodedResult) {
-            console.log(`Code scanned = ${decodedText}`, decodedResult);
-            sendData(decodedText, "url here")
+            //console.log(`Code scanned = ${decodedText}`, decodedResult);
+            sendData(decodedText, document.getElementById('url').value)
         }
-        var qrScanner = new Html5QrcodeScanner(
-            "qr-reader", { fps: 10, qrbox: 250 });
+        // var qrScanner = new Html5QrcodeScanner(
+        //     "qr-reader", { fps: 10, qrbox: 350 });
+        // qrScanner.clear()
+        // qrScanner.render(onScanSuccess);
+
+        var qrScanner = new Html5Qrcode("qr-reader");
+        const config = { fps: 2 };
+        qrScanner.start({ facingMode: "environment" }, config, onScanSuccess);
         qrScanner.render(onScanSuccess);
+        alert(qrScanner.getState())
+
     }
     else if (type === "pc") {
         socket.emit('requestID')
