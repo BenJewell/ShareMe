@@ -29,33 +29,72 @@ app.use(express.static(path.join(__dirname, 'frontend')));
 
 const sockets = new Map();
 
+// Get a new ID for a new connection
 function generateID() {
-    return Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
+  console.log("getting ID")
+  // Duplicate check
+  num = getNumber()
+  if (!sockets.has(num)) {
+    return num
+  }
+  else {
+    console.log("Hit duplicate, trying again")
+    return generateID()
+  }
+}
+function getNumber() {
+  min = 1000
+  max = 9999
+  console.log("generating num")
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function verifyId(ID, socket) {
+  if (sockets.has(ID)) {
+    return true
+  }
+  else {
+    socket.emit('throwError', 'The ID you typed or scanned is invalid.')
+  }
 }
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
-    var ID = generateID()
+  console.log('a user connected');
+  var ID = generateID()
 
-    socket.on('requestID', () => {
-        socket.emit('ID', ID)
-        sockets.set(ID, socket)
-        console.log("added", ID, "to the map")
-      });
-
-      socket.on('giveDestination', (ID, URL) => {
-        ID = parseInt(ID, 10)
-        console.log(`Got a URL of ${URL} for ID ${ID}`)
-        //console.log(sockets.get(ID), typeof(ID))
-        // Next time: if undefined, we need to throw an error the the phone saying the client ID is wrong. Otherwise continue with the URL pass.
-        //sockets.get(ID).emit('URL', URL)
-      });
-
-    socket.on('disconnect', () => {
-      console.log('user disconnected');
-      sockets.delete(ID)
-    });
+  socket.on('requestID', () => {
+    socket.emit('ID', ID)
+    sockets.set(ID, socket)
+    console.log("added", ID, "to the map")
   });
+
+  socket.on('giveDestination', (ID, URL) => {
+    ID = parseInt(ID, 10)
+    console.log(`Got a URL of ${URL} for ID ${ID}`)
+    if (verifyId(ID, socket)) { // Make sure the phone sent a valid ID
+
+      // Adds an HTTP:// to the URL if the user does not put it in.
+      //console.log(URL.charAt(0).toLowerCase())
+      if (URL.charAt(0).toLowerCase() === "h" && URL.charAt(1).toLowerCase() === "t" && URL.charAt(2).toLowerCase() === "t" && URL.charAt(3).toLowerCase() === "p") {
+        console.log("already has an http")
+      }
+      else {
+        URL = "http://" + URL
+      }
+
+      socket = sockets.get(ID)
+      socket.emit('URL', URL)
+    }
+    //console.log(sockets.get(ID), typeof(ID))
+    // Next time: if undefined, we need to throw an error the the phone saying the client ID is wrong. Otherwise continue with the URL pass.
+    //sockets.get(ID).emit('URL', URL)
+  });
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+    sockets.delete(ID)
+  });
+});
 
 server.listen(3000, () => {
   console.log('listening on *:3000');

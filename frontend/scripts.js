@@ -2,9 +2,16 @@
 // Socket managment
 var socket = io();
 
+// Render PC GUI
 socket.on('ID', (ID) => {
-    console.log('id: ' + ID, typeof(ID))
+    console.log('id: ' + ID, typeof (ID))
     jQuery('#qrcode').qrcode(ID.toString());
+    document.getElementById('textcode').innerHTML = ID;
+});
+
+socket.on('URL', url => {
+    console.log('Got a URL of ' + url)
+    window.open(url)
 });
 
 // New session preparations
@@ -29,11 +36,6 @@ function initiate(type) {
     }
     else if (type === "pc") {
         socket.emit('requestID')
-
-        socket.on('URL', () => {
-            console.log('Got a URL of ' + URL)
-            window.open(URL)
-        });
     }
 }
 
@@ -62,4 +64,5 @@ function sendData(ID, URL) {
     socket.emit("giveDestination", ID, URL)
 }
 
-// qrcode
+// Error handling
+socket.on('throwError', error => { alert(error) })
