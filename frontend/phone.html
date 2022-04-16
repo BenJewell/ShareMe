@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+	<link href="/css/phone_style.css" rel="stylesheet" as="style">
 
 <head>
 	<title>basic example</title>
 	<!-- <script src="libs/qrcode-scanner/html5-qrcode.min.js"></script> -->
 	<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+	<p>Enter the URL address</p>
 </head>
 
 <body>
@@ -21,11 +23,11 @@
 	<script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
 		integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
 		crossorigin="anonymous"></script>
-	<link href="styles.css" rel="stylesheet">
+	<link href="css/phone_style.css" rel="stylesheet">
 
 
-	<p>text</p>
-
+	
+<div wrapper>
 	<input type="text" id="url">
 	<br>
 	<button id="start-camera" onclick="setupPage('camera')">Scan With Camera</button>
@@ -41,5 +43,6 @@
 	<script src="scripts.js" type="text/javascript"></script>
 	<script>initiate("phone")</script>
 </body>
+</div>
 
 </html>
