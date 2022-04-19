@@ -20,6 +20,9 @@
     "express": "~4.16.1",
     "greenlock-express": "^4.0.3",
     "nodemon": "^2.0.15",
-    "socket.io": "^4.4.1"
-  }
+    "socket.io": "^4.4.1",
+    "socket.io-file": "^2.0.31",
+    "socketio-file-upload": "^0.7.3"
+  },
+  "keywords": []
 }

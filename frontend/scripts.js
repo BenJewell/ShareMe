@@ -2,6 +2,8 @@
 // Socket managment
 var socket = io();
 
+
+
 // Render PC GUI
 socket.on('ID', (ID) => {
     console.log('id: ' + ID, typeof (ID))
@@ -13,6 +15,7 @@ socket.on('URL', url => {
     console.log('Got a URL of ' + url)
     window.open(url)
 });
+
 
 // New session preparations
 function initiate(type) {
@@ -66,3 +69,4 @@ function sendData(ID, URL) {
 
 // Error handling
 socket.on('throwError', error => { alert(error) })
+
