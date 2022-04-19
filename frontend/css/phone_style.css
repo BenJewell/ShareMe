@@ -107,4 +107,21 @@ body{
     margin-top: 5px;
     color: #ffffff;
     font-size: 16px;
+    text-align: center;
+  }
+ 
+  h3{
+    margin-top: 5px;
+    color: #0a0a0a;
+    font-size: 16px;
+  }
+  h4{
+    margin-top: 5px;
+    color: #0a0a0a;
+    font-size: 16px;
+  }
+  h5{
+    margin-top: 5px;
+    color: #0a0a0a;
+    font-size: 16px;
   }
